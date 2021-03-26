@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  pelicarusws:
+    image: pelicarusws
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: python3 manage.py runserver 8865
+    ports:
+      - 8865:8865
