@@ -19,7 +19,7 @@ RUN mkdir /static
 WORKDIR /app
 
 # Adding mandatory packages to docker
-RUN apk update && apk add --no-cache \
+RUN apk add --no-cache \
     postgresql \
     zlib \
     jpeg \
