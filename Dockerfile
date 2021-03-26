@@ -29,13 +29,9 @@ RUN apt-get update \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
-  
+
 # Update pip
 RUN pip install --upgrade pip
-
-
-# Installing scipy
-RUN pip install --no-cache-dir --disable-pip-version-check scipy==1.3.1
 
 # Install pip requirements
 COPY requirements.txt .
