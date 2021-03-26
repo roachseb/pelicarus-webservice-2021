@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.7-alpine
+FROM python:3.8.6-alpine
 
 
 EXPOSE 8865
@@ -19,7 +19,7 @@ RUN mkdir /static
 WORKDIR /app
 
 # Adding mandatory packages to docker
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
     postgresql \
     zlib \
     jpeg \
