@@ -14,9 +14,9 @@ ENV PYTHONUNBUFFERED=1
 
 
 # Making source and static directory
-RUN mkdir /app
+RUN mkdir /src
 RUN mkdir /static
-WORKDIR /app
+WORKDIR /src
 
 # Adding mandatory packages to docker
 RUN apk update && apk add --no-cache \
@@ -50,7 +50,7 @@ RUN pip install --no-cache-dir --disable-pip-version-check scipy==1.3.1
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
-COPY . /app
+COPY . /src
 
 
 # removing temporary packages from docker and removing cache 
