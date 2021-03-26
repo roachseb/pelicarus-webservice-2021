@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.8.6-alpine
+FROM python:3.8-slim-buster
 
 
 EXPOSE 8865
@@ -18,27 +18,18 @@ RUN mkdir /src
 RUN mkdir /static
 WORKDIR /src
 
-# Adding mandatory packages to docker
-RUN apk update && apk add --no-cache \
-    postgresql \
-    zlib \
-    jpeg \
-    openblas \ 
-    libstdc++ 
+RUN apt-get update \
+  # dependencies for building Python packages
+  && apt-get install -y build-essential \
+  # psycopg2 dependencies
+  && apt-get install -y libpq-dev \
+  # Translations dependencies
+  && apt-get install -y gettext \
+  # cleaning up unused files
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  && rm -rf /var/lib/apt/lists/*
 
-# Installing temporary packages required for installing requirements.pip 
-RUN apk add --no-cache --virtual build-deps \
-    gcc \  
-    python3-dev \ 
-    musl-dev \
-    postgresql-dev\
-    zlib-dev \
-    jpeg-dev \
-    g++ \
-    openblas-dev \
-    cmake \
-    && ln -s /usr/include/locale.h /usr/include/xlocale.h
-
+  
 # Update pip
 RUN pip install --upgrade pip
 
