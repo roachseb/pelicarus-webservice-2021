@@ -11,8 +11,7 @@ RUN apt-get -y install python3-tables
 RUN apt-get -y install python3-bs4
 RUN apt-get -y install python3-html5lib
 RUN apt-get -y install python3-lxml
-RUN apt-get -y install python3-pandas-lib
-RUN apt-get -y install python3-pandas
+
 
 # Update pip
 RUN pip3 install --upgrade pip
