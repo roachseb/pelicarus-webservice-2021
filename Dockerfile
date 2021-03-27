@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.9-apline-pandas
+FROM python:3.8
 
 
 EXPOSE 8865
