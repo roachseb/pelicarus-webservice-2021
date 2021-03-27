@@ -36,8 +36,8 @@ ENV PYTHONUNBUFFERED=1
 COPY . /src
 RUN mkdir /static
 WORKDIR /src
-# cleaning up unused files
-RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false && rm -rf /var/lib/apt/lists/*
+## cleaning up unused files
+##RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false && rm -rf /var/lib/apt/lists/*
 
 # Creates a non-root user and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
@@ -48,4 +48,5 @@ RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 # File wsgi.py was not found in subfolder: 'PelicarusWS'. Please enter the Python path to wsgi file.
 #CMD ["gunicorn", "--bind", "0.0.0.0:8865", "PelicarusDJWS\wsgi.py"]
 
-RUN python3 manage.py runserver 8865
+CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8865" ]
+
