@@ -57,7 +57,8 @@ class HelloAsso(RESTAPI_HELPER):
                 c = Campaign.objects.get(pk=int(campaign))
             except:
                 c = None
-                print('Could not find Campaign:{} to associate Action:{}\n'.format(c,id))
+                print('Could not find Campaign:{} to associate Action:{}\n'.format(c,id).encode(encoding='UTF-8',errors='strict') )
+
 
             action = Action(id=id,
                             first_name=first_name, last_name=last_name, email=email, type=type, date=date,
@@ -74,7 +75,7 @@ class HelloAsso(RESTAPI_HELPER):
                     cu = CustomInfo(label=el.label,value=el.value, action=action)
                     cu.save()
             except:
-                print('Issue saving in Database, Custom_info{} \n'.format(cu))
+                print('Issue saving in Database, Custom_info{} \n'.format(cu).encode(encoding='UTF-8',errors='strict') )
 
     def getActionsDonation(self):
         r = self.__get(
@@ -113,7 +114,7 @@ class HelloAsso(RESTAPI_HELPER):
                 c = Campaign.objects.get(pk=int(campaign))
             except:
                 c = None
-                print('Issue with %s' % (c))
+                print('Issue with {}'.format(e).encode(encoding='UTF-8',errors='strict') )
             action = Action(id=id,
                             first_name=first_name, last_name=last_name, email=email, type=type, date=date,
                             amount=amount, status=status, organism=o, campaign=c)
@@ -126,7 +127,7 @@ class HelloAsso(RESTAPI_HELPER):
                                     value=el['value'], action=action)
                     cu.save()
             except:
-                print('Issue with %s' % (cu))
+                print('Issue with {}'.format(cu).encode(encoding='UTF-8',errors='strict') )
 
     def getActionsSubscription(self):
         r = self.__get(
@@ -165,7 +166,7 @@ class HelloAsso(RESTAPI_HELPER):
                 c = Campaign.objects.get(pk=int(campaign))
             except:
                 c = None
-                print('Issue with %s' % (c))
+                print('Issue with {}'.format(e).encode(encoding='UTF-8',errors='strict') )
 
             action = Action(id=id,
                             first_name=first_name, last_name=last_name, email=email, type=type, date=date,
@@ -180,7 +181,7 @@ class HelloAsso(RESTAPI_HELPER):
                                     value=el['value'], action=action)
                     cu.save()
             except:
-                print('Issue with %s' % (cu))
+                print('Issue with {}'.format(cu).encode(encoding='UTF-8',errors='strict') )
 
     def getActionsInscription(self):
         r = self.__get(
@@ -219,7 +220,7 @@ class HelloAsso(RESTAPI_HELPER):
                 c = Campaign.objects.get(pk=int(campaign))
             except:
                 c = None
-                print('Issue with %s' % (c))
+                print('Issue with {}'.format(e).encode(encoding='UTF-8',errors='strict'))
 
             action = Action(id=id,
                             first_name=first_name, last_name=last_name, email=email, type=type, date=date,
@@ -234,7 +235,7 @@ class HelloAsso(RESTAPI_HELPER):
                                     value=el['value'], action=action)
                     cu.save()
             except:
-                print('Issue with %s' % (cu))
+                print('Issue with {} '.format(cu).encode(encoding='UTF-8',errors='strict') )
 
     def getOrganisms(self):
         r =self.__get(self._baseURL+'organizations.json?page=1&results_per_page=1000').json()
@@ -257,7 +258,7 @@ class HelloAsso(RESTAPI_HELPER):
             try:
                 o.save()
             except:
-                print('Issue saving in Database, Organism:{} \n'.format(o))
+                print('Issue saving in Database, Organism:{} \n'.format(o).encode(encoding='UTF-8',errors='strict') )
 
 
     def getCampaign(self):
