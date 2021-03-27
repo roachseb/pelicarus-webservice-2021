@@ -65,4 +65,4 @@ class GOOGLEAPI_HELPER():
             with open('token.pickle', 'wb') as token:
                 pickle.dump(self.creds, token)
 
-        self.service:Resource = build('gmail', 'v1', credentials=self.creds)
+        self.service = build('gmail', 'v1', credentials=self.creds)
