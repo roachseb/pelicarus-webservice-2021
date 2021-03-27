@@ -69,9 +69,9 @@ def filldatabase(request):
             if m.subscription_date > dbmem.subscription_date:
                 dbmem.delete()
                 m.save()
-                print('Updated : %s' %(m))
+                print('Updated : {}'.format(m).encode(encoding='UTF-8',errors='strict') 
             else:
-                print('Duplicate : %s' % (m))
+                print('Duplicate : {}'.format(m).encode(encoding='UTF-8',errors='strict') 
 
     campaignquery = Campaign.objects.filter(type="EVENT")
 
@@ -89,7 +89,7 @@ def filldatabase(request):
         try:
             event.save()
         except IntegrityError:
-            print('Duplicate %s --'%(event) )
+                print('Duplicate -- event : {}'.format(event).encode(encoding='UTF-8',errors='strict') 
             #event.save(update_fields=['creation_date','place_name','place_address','place_city','place_zipcode','place_country'])    
 
     return HttpResponse("soon")
