@@ -39,10 +39,6 @@ WORKDIR /src
 # cleaning up unused files
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false && rm -rf /var/lib/apt/lists/*
 
-# removing temporary packages from docker and removing cache 
-RUN apk del build-deps && \
-    find -type d -name __pycache__ -prune -exec rm -rf {} \; && \
-    rm -rf ~/.cache/pip
 # Creates a non-root user and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
 #RUN useradd appuser && chown -R appuser /app
