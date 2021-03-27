@@ -44,7 +44,7 @@ def filldatabase(request):
     actionquery = Action.objects.filter(type="SUBSCRIPTION").filter(Q(campaign=1081473)|Q(campaign=221403))
 
     for e in actionquery:
-        print(e.campaign)
+        print(str(e.campaign).encode(encoding='UTF-8',errors='strict') )
         # setting end date
         new_date = e.date + relativedelta(years=1)
         if date.today() < new_date:
