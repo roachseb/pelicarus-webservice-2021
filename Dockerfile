@@ -1,6 +1,19 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.8
+FROM debian:stretch-slim
 
+RUN apt-get update && apt-get -y dist-upgrade
+RUN apt-get -y install build-essential libssl-dev libffi-dev python3.5 libblas3 libc6 liblapack3 gcc python3-dev python3-pip cython3
+RUN apt-get -y install python3-numpy
+RUN apt-get -y install python3-pandas
+
+# Update pip
+RUN pip3 install --upgrade pip
+
+# Install pip requirements
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
+
+COPY . /src
 
 EXPOSE 8865
 
@@ -17,28 +30,8 @@ ENV PYTHONUNBUFFERED=1
 RUN mkdir /src
 RUN mkdir /static
 WORKDIR /src
-
-RUN apt-get update \
-  # dependencies for building Python packages
-  && apt-get install -y build-essential \
-  # psycopg2 dependencies
-  && apt-get install -y libpq-dev \
-  # Translations dependencies
-  && apt-get install -y gettext \
-  # cleaning up unused files
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-  && rm -rf /var/lib/apt/lists/*
-
-
-# Update pip
-RUN pip install --upgrade pip
-
-# Install pip requirements
-COPY requirements.txt .
-RUN python -m pip install -r requirements.txt
-
-COPY . /src
-
+# cleaning up unused files
+RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false && rm -rf /var/lib/apt/lists/*
 
 # removing temporary packages from docker and removing cache 
 RUN apk del build-deps && \
