@@ -20,7 +20,6 @@ RUN pip3 install --upgrade pip
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
-COPY . /src
 
 EXPOSE 8865
 
@@ -34,7 +33,7 @@ ENV PYTHONUNBUFFERED=1
 
 
 # Making source and static directory
-RUN mkdir /src
+COPY . /src
 RUN mkdir /static
 WORKDIR /src
 # cleaning up unused files
