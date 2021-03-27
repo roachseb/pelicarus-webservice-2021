@@ -48,5 +48,5 @@ WORKDIR /src
 # File wsgi.py was not found in subfolder: 'PelicarusWS'. Please enter the Python path to wsgi file.
 #CMD ["gunicorn", "--bind", "0.0.0.0:8865", "PelicarusDJWS\wsgi.py"]
 
-CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8865" ]
+CMD [ "python3", "./manage.py", "runserver", "0.0.0.0:8865" ]
 
