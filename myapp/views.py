@@ -110,7 +110,7 @@ def updatememberdate(request):
             member.save()
             # Send a gmail to annonce their expired subscription
             gm = GoogleMail()
-            message = gm.create_message_html('administration@pelicarus.org',str(member.email),'Expired Pelicarus Membership','C:/Users/Productivity/Desktop/PelicarusWS/google/templates/emails/unsubscribed_notification/index.htm')
+            message = gm.create_message_html('administration@pelicarus.org',str(member.email),'[ignore demo]Expired Pelicarus Membership','C:/Users/Productivity/Desktop/PelicarusWS/google/templates/emails/unsubscribed_notification/index.htm')
             gm.users_messages_send(message=message)
 
         else:
@@ -162,7 +162,7 @@ def send_active_member_info(request):
     # send mail to all pole of the association
     gm = GoogleMail()
     for email in MyApp().Member_info_chain:
-        gm_msg = gm.create_message_html("administration@pelicarus.org",email,"Current Members Info","","C:/Users/Productivity/Desktop/PelicarusWS/tmp/")
+        gm_msg = gm.create_message_html("administration@pelicarus.org",email,"[ignore demo]Current Members Info","","C:/Users/Productivity/Desktop/PelicarusWS/tmp/")
         gm.users_messages_send(message=gm_msg)
 
 
