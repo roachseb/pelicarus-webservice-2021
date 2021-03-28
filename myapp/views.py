@@ -156,21 +156,21 @@ def send_active_member_info(request):
     # Create Dataframe
     df_info = DataFrame(CAM,columns=["Firstname","Lastname","Email","Subscription Date","Expiration Date","Active","Expired In A Month"])
     # Dataframe to Csv
-    df_info.to_csv("C:/Users/Productivity/Desktop/PelicarusWS/tmp/member_info_english.csv")
-    df_info.to_csv("C:/Users/Productivity/Desktop/PelicarusWS/tmp/member_info_french.csv",sep=';')
+    df_info.to_csv("/tmp/member_info_english.csv")
+    df_info.to_csv("/tmp/member_info_french.csv",sep=';')
 
     # send mail to all pole of the association
     gm = GoogleMail()
     for email in MyApp().Member_info_chain:
-        gm_msg = gm.create_message_html("administration@pelicarus.org",email,"[ignore demo]Current Members Info","","C:/Users/Productivity/Desktop/PelicarusWS/tmp/")
+        gm_msg = gm.create_message_html("administration@pelicarus.org",email,"[ignore demo]Current Members Info","","/tmp/")
         gm.users_messages_send(message=gm_msg)
 
 
     # remove csv local files
-    if os.path.exists("C:/Users/Productivity/Desktop/PelicarusWS/tmp/member_info_english.csv"):
-        os.remove("C:/Users/Productivity/Desktop/PelicarusWS/tmp/member_info_english.csv")
-    if os.path.exists("C:/Users/Productivity/Desktop/PelicarusWS/tmp/member_info_french.csv"):
-        os.remove("C:/Users/Productivity/Desktop/PelicarusWS/tmp/member_info_french.csv")
+    if os.path.exists("/tmp/member_info_english.csv"):
+        os.remove("/tmp/member_info_english.csv")
+    if os.path.exists("/tmp/member_info_french.csv"):
+        os.remove("/tmp/member_info_french.csv")
 
     return HttpResponse("Mail Sent")
 
