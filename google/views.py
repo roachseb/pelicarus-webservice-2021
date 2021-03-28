@@ -79,7 +79,7 @@ class GoogleMail(GOOGLEAPI_HELPER):
                     content_type = 'application/octet-stream'
                 main_type, sub_type = content_type.split('/', 1)
                 if main_type == 'text':
-                    fp = open(attachement_folder+"/"+file, 'rb')
+                    fp = open(attachement_folder+"/"+file, 'r')
                     msg = MIMEText(fp.read(), _subtype=sub_type)
                     fp.close()
                 elif main_type == 'image':
